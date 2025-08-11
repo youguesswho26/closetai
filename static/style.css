@@ -1,0 +1,29 @@
+body {
+    font-family: sans-serif;
+    margin: 2em;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 2em;
+}
+
+#closet, #recommendations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.clothing-item {
+    border: 1px solid #ccc;
+    padding: 1em;
+    text-align: center;
+}
+
+.clothing-item img {
+    max-width: 150px;
+    max-height: 150px;
+}
