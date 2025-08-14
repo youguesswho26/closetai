@@ -46,7 +46,9 @@ def upload():
 
     if image:
         filename = image.filename
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        upload_folder = app.config['UPLOAD_FOLDER']
+        os.makedirs(upload_folder, exist_ok=True)
+        filepath = os.path.join(upload_folder, filename)
         image.save(filepath)
 
         new_clothing_item = {
