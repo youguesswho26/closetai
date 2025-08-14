@@ -34,27 +34,28 @@
     <div id="closet">
         {% for item in clothes %}
             <div class="clothing-item">
-                <img src="{{ url_for('static', filename=item.image_path.replace('static/', '')) }}" alt="{{ item.name }}">
+                <img src="{{ url_for('static', filename=item.image_path) }}" alt="{{ item.name }}">
                 <p>{{ item.name }}</p>
             </div>
         {% endfor %}
     </div>
 
     <h2>Outfit Recommendations</h2>
+    <a href="/"><button>Regenerate</button></a>
     <div id="recommendations">
         {% if recommendations %}
             {% for outfit in recommendations %}
                 <div class="outfit">
                     <div class="clothing-item">
-                        <img src="{{ url_for('static', filename=outfit.top.image_path.replace('static/', '')) }}" alt="{{ outfit.top.name }}">
+                        <img src="{{ url_for('static', filename=outfit.top.image_path) }}" alt="{{ outfit.top.name }}">
                         <p>{{ outfit.top.name }}</p>
                     </div>
                     <div class="clothing-item">
-                        <img src="{{ url_for('static', filename=outfit.bottom.image_path.replace('static/', '')) }}" alt="{{ outfit.bottom.name }}">
+                        <img src="{{ url_for('static', filename=outfit.bottom.image_path) }}" alt="{{ outfit.bottom.name }}">
                         <p>{{ outfit.bottom.name }}</p>
                     </div>
                     <div class="clothing-item">
-                        <img src="{{ url_for('static', filename=outfit.shoes.image_path.replace('static/', '')) }}" alt="{{ outfit.shoes.name }}">
+                        <img src="{{ url_for('static', filename=outfit.shoes.image_path) }}" alt="{{ outfit.shoes.name }}">
                         <p>{{ outfit.shoes.name }}</p>
                     </div>
                 </div>

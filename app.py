@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
 import os
+import random
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 UPLOAD_FOLDER = 'static/uploads'
@@ -13,12 +14,11 @@ def generate_recommendations(clothes):
     shoes = [item for item in clothes if item['type'] == 'shoes']
 
     if tops and bottoms and shoes:
-        # For simplicity, we'll just recommend the first of each type.
-        # A more advanced version could create more combinations.
+        # Generate a random outfit
         recommendations.append({
-            "top": tops[0],
-            "bottom": bottoms[0],
-            "shoes": shoes[0]
+            "top": random.choice(tops),
+            "bottom": random.choice(bottoms),
+            "shoes": random.choice(shoes)
         })
     return recommendations
 
@@ -51,11 +51,14 @@ def upload():
         filepath = os.path.join(upload_folder, filename)
         image.save(filepath)
 
+        # Store a path relative to the static folder for use in url_for
+        db_image_path = os.path.join('uploads', filename)
+
         new_clothing_item = {
             "name": request.form['name'],
             "color": request.form['color'],
             "type": request.form['type'],
-            "image_path": filepath
+            "image_path": db_image_path
         }
 
         db_path = app.config.get('DB_PATH', 'db.json')
